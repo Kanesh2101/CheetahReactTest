@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .App-logo {
@@ -35,4 +36,81 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+
+body {
+  margin: 0;
+  padding: 0; 
+  background: linear-gradient(
+    to left,
+    rgb(52, 82, 167) 0%,
+    rgb(18, 214, 214) 100%
+  );
+  text-align: center;
+}
+
+.app-title{
+  margin-top: 75px;
+  margin-bottom: 50px;
+  font-size: 76px;
+  color: rgb(3, 1, 19);
+}
+
+.btn {
+  border: 1px solid #C75100 !important;
+  border-radius: 4px !important;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  text-align: center;
+  color: #C75100 !important;
+  margin-top: 20px;
+}
+
+.btn-clear {
+  border: 1px solid #C75100 !important;
+  border-radius: 4px !important;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  text-align: center;
+  color: #C75100 !important;
+  margin-top: 20px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.font-20 {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  color: #252525;
+}
+
+.font-16 {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  color: #252525;
+}
+
+table, th, td {
+  border: 1px solid rgb(195, 174, 174);
+  border-collapse: collapse;
+}
+
+td{
+  padding: 15px;
 }
