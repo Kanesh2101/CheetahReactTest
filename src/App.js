@@ -34,7 +34,8 @@ class App extends Component{
     input2 = input2.trim();
     var commonTagStr = input1 + ", " + input2;
     if(input1 != input2){
-      let filtered = this.state.filteredCategories.filter(category=>
+      let tempArray = Object.assign(initialList.categories);
+      let filtered = tempArray.filter(category=>
         category?.tags?.includes(input1) && category?.tags?.includes(input2)
         )
         this.setState({filteredCategories: filtered, commonTag: commonTagStr});
