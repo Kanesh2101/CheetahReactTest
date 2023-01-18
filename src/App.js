@@ -26,7 +26,6 @@ class App extends Component{
   }
 
   onSearchChange= ()=>{ 
-
     var tempAr = Object.assign(initialList.categories);
     var combinationLst = [];
     let idCount = 0;
@@ -48,7 +47,6 @@ class App extends Component{
           };
           if(count >= 2 ){
             test.tags = tags;
-            
             //checking if the name combination already exist in array
             if(combinationLst.findIndex(x => 
               (x.fname == firstCater.name && x.sname == secondCater.name) 
@@ -56,33 +54,12 @@ class App extends Component{
               test.id = idCount;
               combinationLst.push(test); 
               idCount++
-
-            }   
-            
+            }    
           }
         })
-
-       
-
-      }
-      
+      }      
     }
-            this.setState({filteredCategories: combinationLst, buttonClicked: true});
-
-
-    console.log("combination list", combinationLst);
-
-    // if(input1 != input2){
-    //   let tempArray = Object.assign(initialList.categories);
-    //   let filtered = tempArray.filter(category=>
-    //     category?.tags?.includes(input1) && category?.tags?.includes(input2)
-    //     )
-    //     this.setState({filteredCategories: filtered, commonTag: commonTagStr});
-    //   }else
-    //   {
-    //     this.setState({filteredCategories: []});
-    //   }
-   
+    this.setState({filteredCategories: combinationLst, buttonClicked: true});
   }
 
 

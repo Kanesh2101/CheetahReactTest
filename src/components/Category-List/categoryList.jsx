@@ -24,8 +24,7 @@ const CategoryList = (props) =>{
             ) 
             }
         </div>
-    )
-        
+        )
     }
 
 export default CategoryList;

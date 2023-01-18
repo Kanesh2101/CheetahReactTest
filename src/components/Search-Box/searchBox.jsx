@@ -8,7 +8,6 @@ const SearchBox =(props)=>{
     }
 
   
-
     return(
         <div>
             <form onSubmit={onSubmitButton} >
@@ -17,12 +16,8 @@ const SearchBox =(props)=>{
             </div>
             
             </form>
-        </div>
-       
-
-            
+        </div>     
     )
-
 }
 
 export default SearchBox;
