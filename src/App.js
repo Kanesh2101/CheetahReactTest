@@ -14,12 +14,9 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
+      
       filteredCategories:[],
-      commonTag: "",
-      searchField: {
-        input1: "",
-        input2: ""
-      }
+      buttonClicked : false
     }  
   }
   
@@ -28,37 +25,75 @@ class App extends Component{
     
   }
 
-  onSearchChange= (input1, input2)=>{ 
-    let filterArray = [];
-    input1 = input1.trim();
-    input2 = input2.trim();
-    var commonTagStr = input1 + ", " + input2;
-    if(input1 != input2){
-      let tempArray = Object.assign(initialList.categories);
-      let filtered = tempArray.filter(category=>
-        category?.tags?.includes(input1) && category?.tags?.includes(input2)
-        )
-        this.setState({filteredCategories: filtered, commonTag: commonTagStr});
-      }else
-      {
-        this.setState({filteredCategories: []});
+  onSearchChange= ()=>{ 
+
+    var tempAr = Object.assign(initialList.categories);
+    var combinationLst = [];
+    let idCount = 0;
+    for(let i = 0; i < tempAr.length; i++){
+      let firstCater = tempAr[i]
+      for(let j = 0; j < tempAr.length; j++){
+        let secondCater = tempAr[j];
+        //checking for self id
+        if(firstCater.id == secondCater.id){
+          continue;
+        } 
+        let count = 0; 
+        var test = {fname: firstCater.name, sname: secondCater.name, tags: []} ;
+        var tags= [];
+        firstCater.tags.forEach(item=>{
+          if(secondCater.tags.includes(item)){
+            tags.push(item);
+            count ++;
+          };
+          if(count >= 2 ){
+            test.tags = tags;
+            
+            //checking if the name combination already exist in array
+            if(combinationLst.findIndex(x => 
+              (x.fname == firstCater.name && x.sname == secondCater.name) 
+              || (x.fname == secondCater.name && x.sname == firstCater.name) ) == -1){
+              test.id = idCount;
+              combinationLst.push(test); 
+              idCount++
+
+            }   
+            
+          }
+        })
+
+       
+
       }
+      
+    }
+            this.setState({filteredCategories: combinationLst, buttonClicked: true});
+
+
+    console.log("combination list", combinationLst);
+
+    // if(input1 != input2){
+    //   let tempArray = Object.assign(initialList.categories);
+    //   let filtered = tempArray.filter(category=>
+    //     category?.tags?.includes(input1) && category?.tags?.includes(input2)
+    //     )
+    //     this.setState({filteredCategories: filtered, commonTag: commonTagStr});
+    //   }else
+    //   {
+    //     this.setState({filteredCategories: []});
+    //   }
    
   }
 
-  
-  onClearClick= ()=>{ 
-   this.setState({filteredCategories: initialList.categories, commonTag: ""})
-  }
 
   render(){
-    let {filteredCategories, commonTag} = this.state;
+    let {filteredCategories, buttonClicked} = this.state;
     return (
       <div className="App">
         <h1 className='app-title'>Cheetah Digital Techinical React Test</h1>
-        <SearchBox onSubmit={this.onSearchChange} onClear={this.onClearClick} />
+        <SearchBox onSubmit={this.onSearchChange} />
         <br></br>
-        <CategoryList categories={filteredCategories} commonTag={commonTag}/>
+        <CategoryList categories={filteredCategories} buttonClicked={buttonClicked}/>
       </div>
     )
   }
